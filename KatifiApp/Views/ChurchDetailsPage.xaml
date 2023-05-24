@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:KatifiApp.ViewModels"
+             x:Class="KatifiApp.Views.ChurchDetailsPage"
+             x:DataType="viewmodel:ChurchDetailsViewModel"
+             Title="{Binding Church.Name}">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,Auto,*"
+                  RowDefinitions="140,*">
+                <BoxView Color="LightSkyBlue"
+                         Grid.ColumnSpan="3"
+                         HeightRequest="140"
+                         HorizontalOptions="FillAndExpand"/>
+                <Frame Grid.RowSpan="2"
+                       Grid.Column="1"
+                       HeightRequest="160" WidthRequest="160"
+                       CornerRadius="80"
+                       HorizontalOptions="Center"
+                       Margin="0,60,0,0"
+                       Padding="0"
+                       IsClippedToBounds="True">
+                    <Image Aspect="AspectFill"
+                           HeightRequest="160"
+                           WidthRequest="160"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Source="{Binding Church.ImageUrl}"/>
+                </Frame>
+            </Grid>
+            <VerticalStackLayout Padding="10" Spacing="15" Margin="0,40,0,0">
+                <Label Text="{Binding Church.Name, StringFormat='Név: {0}'}" Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Church.Vicar, StringFormat='Plébános: {0}'}" Style="{StaticResource MediumLabel}"/>
+                <Label Text="{Binding Church.Address, StringFormat='Cím: {0}'}" Style="{StaticResource MediumLabel}"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

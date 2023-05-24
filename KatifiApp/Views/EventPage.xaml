@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KatifiApp.Views.EventPage"
+             xmlns:viewmodel="clr-namespace:KatifiApp.ViewModels"
+             xmlns:model="clr-namespace:KatifiApp.Models"
+             x:DataType="viewmodel:EventViewModel"
+             Title="{Binding Title}">
+
+    <Grid ColumnDefinitions="*,*"
+          ColumnSpacing="5"
+          RowDefinitions="*,Auto"
+          RowSpacing="0">
+
+        <RefreshView Grid.ColumnSpan="2"
+                     Command="{Binding GetEventsCommand}"
+                     IsRefreshing="{Binding IsRefresing}">
+            <CollectionView BackgroundColor="{StaticResource Secondary}"
+                        ItemsSource="{Binding Events}"
+                        SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center"
+                                 WidthRequest="150"
+                                 HeightRequest="150">
+                        <Image Source="empty_icon.png"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               Aspect="AspectFill"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Event">
+                        <Grid Padding="10,5,10,5" >
+                            <Frame HeightRequest="90" Padding="0" BackgroundColor="LightSkyBlue" BorderColor="LightGrey">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer CommandParameter="{Binding .}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventViewModel}}, Path=GoToDetailsCommand}" />
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions="90,*" Padding="0">
+                                    <Image Source="{Binding ImageUrl}"
+                                           Aspect="AspectFill"
+                                           WidthRequest="90"
+                                           HeightRequest="90"/>
+                                    <VerticalStackLayout Grid.Column="1" Padding="10">
+                                        <Label Text="{Binding Name}"
+                                           VerticalOptions="StartAndExpand"
+                                           MaximumHeightRequest="52"
+                                           Style="{StaticResource LargeLabel}"/>
+                                        <Label Text="{Binding Address.City}"
+                                           VerticalOptions="EndAndExpand"
+                                           Style="{StaticResource MediumLabel}"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        
+        <Button Text="Load Events"
+                Command="{Binding GetEventsCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Grid.Row="1"
+                Margin="8"/>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.ColumnSpan="2"
+                           Grid.RowSpan="2"/>
+
+    </Grid>
+
+</ContentPage>

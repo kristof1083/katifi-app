@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="KatifiApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sys="clr-namespace:System;assembly=netstandard"
+    xmlns:local="clr-namespace:KatifiApp"
+    xmlns:views="clr-namespace:KatifiApp.Views"
+    xmlns:contentviews="clr-namespace:KatifiApp.Views.ContentViews"
+    Shell.TabBarIsVisible="False"
+    FlyoutBehavior="Flyout"
+    FlyoutBackgroundImage="sky.png">
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            Shell.NavBarIsVisible="True"
+            ContentTemplate="{DataTemplate views:MainPage}"
+            Route="MainPage" />
+
+        <Tab Title="Events">
+            <ShellContent
+                Title="Events"
+                Shell.NavBarIsVisible="True"
+                ContentTemplate="{DataTemplate views:EventPage}"
+                Route="EventPage" />
+
+            <ShellContent
+                Title="My events"
+                Shell.NavBarIsVisible="True"
+                ContentTemplate="{DataTemplate views:MyEventsPage}"
+                Route="MyEventsPage" />
+
+            <ShellContent
+                Title="Calendar"
+                Shell.NavBarIsVisible="True"
+                ContentTemplate="{DataTemplate views:CalendarPage}"
+                Route="CalendarPage" />
+        </Tab>
+
+        <ShellContent
+            Title="Communities"
+            Shell.NavBarIsVisible="True"
+            ContentTemplate="{DataTemplate views:CommunityPage}"
+            Route="CommunityPage" />
+
+        <Tab Title="Churches and Messes">
+            <ShellContent
+            Title="Churches"
+            Shell.NavBarIsVisible="True"
+            ContentTemplate="{DataTemplate views:ChurchPage}"
+            Route="ChurchPage" />
+
+            <ShellContent
+            Title="Messes"
+            Shell.NavBarIsVisible="True"
+            ContentTemplate="{DataTemplate views:MessPage}"
+            Route="MessPage" />
+        </Tab>
+    </FlyoutItem>
+
+    <ShellContent
+        Title="Log in"
+        Shell.NavBarIsVisible="False"
+        FlyoutIcon="login_icon.png"
+        ContentTemplate="{DataTemplate views:LoginPage}"
+        Route="LoginPage" />
+
+    <MenuItem 
+        Text="Log out"
+        IconImageSource="logout_icon.png"
+        Command="{Binding LogOutCommand}"/>
+
+    <MenuItem 
+        Text="Quit"
+        IconImageSource="quit_icon.png"
+        Command="{Binding QuitCommand}"/>
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="25" Spacing="20">
+            <Label Text="{DynamicResource local:App.loggedInUsername}" TextColor="Black"/>
+            <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
+            <Label Text="KatifiApp v.0.2"
+                       TextColor="Black"
+                       HorizontalOptions="Center" />
+            <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:yyyy, MMMM dd.}'}"
+                       TextColor="Black"
+                       HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+</Shell>

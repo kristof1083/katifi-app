@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:KatifiApp.ViewModels"
+             x:Class="KatifiApp.Views.EventDetailsPage"
+             x:DataType="viewmodel:EventDetailsViewModel"
+             Title="{Binding Varevent.Name}">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid RowDefinitions="Auto,Auto,*" >
+                <Grid ColumnDefinitions="*,Auto,*"
+                  RowDefinitions="140,*">
+                <BoxView Color="LightSkyBlue"
+                         Grid.ColumnSpan="3"
+                         HeightRequest="140"
+                         HorizontalOptions="FillAndExpand"/>
+                <Frame Grid.RowSpan="2"
+                       Grid.Column="1"
+                       HeightRequest="160" WidthRequest="160"
+                       CornerRadius="80"
+                       HorizontalOptions="Center"
+                       Margin="0,60,0,0"
+                       Padding="0"
+                       IsClippedToBounds="True">
+                    <Image Aspect="AspectFill"
+                           HeightRequest="160"
+                           WidthRequest="160"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Source="{Binding Varevent.ImageUrl}"/>
+                </Frame>
+                </Grid>
+                <VerticalStackLayout Padding="10" Spacing="15" Margin="0,40,0,0" Grid.Row="1">
+                    <Label Text="{Binding Varevent.Name, StringFormat='Név: {0}'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.Start, StringFormat='Kezdődik: {0}'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.End, StringFormat='Befejeződik: {0}'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.Fee, StringFormat='Költség: {0} Ft'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.Organizer, StringFormat='Szervező: {0}'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.RegistrationDeadline, StringFormat='Regisztrációs határidő: {0}'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.ParticipantCount, StringFormat='Jelenlegi létszám: {0}'}" Style="{StaticResource MediumLabel}"/>
+                    <Label Text="{Binding Varevent.Address, StringFormat='Cím: {0}'}" Style="{StaticResource MediumLabel}"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout HorizontalOptions="Center" Spacing="15" Grid.Row="2" Margin="0,90,0,0">
+                    <Button Text="Registrate"
+                            WidthRequest="260"
+                            FontSize="Medium"
+                            BackgroundColor="{Static Colors.LightSkyBlue}"
+                            Command="{Binding RegistCommand}" />
+                    <HorizontalStackLayout Spacing="20">
+                        <Button Text="Add to local calendar"
+                            WidthRequest="180"
+                            Command="{Binding AddToLocalCalendarCommand}" />
+                        <Button Text="Add to google calendar"
+                            WidthRequest="180"
+                            Command="{Binding AddToGoogleCalendarCommand}" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>

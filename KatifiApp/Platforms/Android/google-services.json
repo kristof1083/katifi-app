@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "456963564967",
+    "project_id": "katifinotifications",
+    "storage_bucket": "katifinotifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456963564967:android:430d4fa0655581afcac282",
+        "android_client_info": {
+          "package_name": "hu.katifi.katifiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456963564967-2tsdsrim84baceefe2ka0pakie1i66dh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAM9k3YVOFcbFAH-Jw1M4PiofHg1Q-nOGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456963564967-2tsdsrim84baceefe2ka0pakie1i66dh.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "456963564967-h3fs0s984jn2ubmhsbam9lvcskl4brro.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "hu.katifi.katifiapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

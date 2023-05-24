@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KatifiApp.Views.LoginPage"
+             xmlns:viewmodel="clr-namespace:KatifiApp.ViewModels"
+             x:DataType="viewmodel:LoginViewModel"
+             Title="{Binding Title}">
+
+    <VerticalStackLayout
+        VerticalOptions="StartAndExpand"
+        Padding="0,60,0,0"
+        Spacing="25">
+
+        <Frame BorderColor="{StaticResource Yellow100Accent}" HeightRequest="80" WidthRequest="300" CornerRadius="50"
+               BackgroundColor="{StaticResource Yellow300Accent}">
+            <Image Source="pecsikatifi.svg" 
+               HeightRequest="60" WidthRequest="200" />
+        </Frame>
+
+        
+        <VerticalStackLayout Spacing="5">
+            <Label Text="Welcome!" FontSize="28" HorizontalTextAlignment="Center"/>
+            <Label Text="Login to your account!" FontSize="18" HorizontalTextAlignment="Center"/>
+        </VerticalStackLayout>
+
+        <StackLayout Orientation="Horizontal" Padding="30,0">
+            <Frame HasShadow="True" BorderColor="White"
+                   HeightRequest="65" WidthRequest="65"
+                   CornerRadius="35">
+                <Image Source="user_icon.jpg" HeightRequest="35" WidthRequest="35" />
+            </Frame>
+            <Frame HasShadow="True" BorderColor="White"
+                   HeightRequest="50" Margin="-20,0,0,0" Padding="0" HorizontalOptions="FillAndExpand">
+                <Entry Placeholder="Username" Text="{Binding Username}" VerticalOptions="Center" Keyboard="Text"  Margin="15,0,5,0"/>
+            </Frame>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="30,0">
+            <Frame HasShadow="True" BorderColor="White" Padding="0"
+                   HeightRequest="65" WidthRequest="65"
+                   CornerRadius="35">
+                <Image Source="lock_icon.png" HeightRequest="45" WidthRequest="45" />
+            </Frame>
+            <Frame HasShadow="True" BorderColor="White"
+                   HeightRequest="50" Margin="-20,0,0,0" Padding="0" HorizontalOptions="FillAndExpand">
+                <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" Margin="15,0,5,0"/>
+            </Frame>
+        </StackLayout>
+
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label Text="Remember me" VerticalOptions="Center"/>
+            <CheckBox IsChecked="{Binding RememberMe}"/>
+            <Button Text="Sign in" CornerRadius="25" WidthRequest="110" Command="{Binding LoginCommand}"/>
+        </HorizontalStackLayout>
+        
+        <HorizontalStackLayout Spacing="5" HorizontalOptions="Center">
+            <Label Text="Don't have account?"/>
+            <Label Text="Sign up here" TextColor="Blue">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToRegistrationPageCommand}"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
