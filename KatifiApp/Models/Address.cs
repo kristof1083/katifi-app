@@ -12,6 +12,11 @@ public class Address
 
     public override string ToString()
     {
-        return $"{CountryCode}, {PostCode} {City}, {Street} {HouseNumber}";
+        if (PostCode is null && Street is null && HouseNumber is null)
+        {
+            return $"{CountryCode} {County}, {City}";
+        }
+
+        return $"{CountryCode} {PostCode} {City}, {Street} {HouseNumber}";
     }
 }
