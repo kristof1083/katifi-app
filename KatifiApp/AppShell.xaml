@@ -30,12 +30,6 @@
                 Shell.NavBarIsVisible="True"
                 ContentTemplate="{DataTemplate views:MyEventsPage}"
                 Route="MyEventsPage" />
-
-            <ShellContent
-                Title="Calendar"
-                Shell.NavBarIsVisible="True"
-                ContentTemplate="{DataTemplate views:CalendarPage}"
-                Route="CalendarPage" />
         </Tab>
 
         <ShellContent

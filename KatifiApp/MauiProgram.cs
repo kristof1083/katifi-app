@@ -24,6 +24,7 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IPreferences>(Preferences.Default);
 		builder.Services.AddSingleton<ISecureStorage>(SecureStorage.Default);
 		builder.Services.AddSingleton<IFilePicker>(FilePicker.Default);
+		builder.Services.AddSingleton<IBrowser>(Browser.Default);
 
         //Service-ek
         builder.Services.AddSingleton<BaseService>();

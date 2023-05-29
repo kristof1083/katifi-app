@@ -96,7 +96,7 @@ public partial class EventDetailsViewModel : BaseViewModel
             if (!success)
                 return;
 
-            await Shell.Current.DisplayAlert("Success", $"Your request [delete registration from {Varevent.Name}] was successful.", "OK");
+            await Shell.Current.DisplayAlert("Success", $"Your request [delete registration from {Varevent.Name}] was fulfilled.", "OK");
             await Shell.Current.GoToAsync("..");
         }
         catch (Exception ex)
@@ -130,6 +130,12 @@ public partial class EventDetailsViewModel : BaseViewModel
             if (!_preferences.Get("loggedin", false))
             {
                 await Shell.Current.DisplayAlert("Authorization issue", "Please log in, if you want to send picture!", "OK");
+                return;
+            }
+
+            if(Varevent.End > DateTime.Now)
+            {
+                await Shell.Current.DisplayAlert("Event not finished yet", "Picture upload only available after the event.", "OK");
                 return;
             }
 
@@ -223,17 +229,17 @@ public partial class EventDetailsViewModel : BaseViewModel
 
             if (!g_result)
             {
-                await Shell.Current.DisplayAlert("Oppsz", "We are unable to handle the request.", "Sad");
+                await Shell.Current.DisplayAlert("Oppsz", "We are unable to handle the request. Please try again later.", "OK");
                 return;
             }
 
 
-            await Shell.Current.DisplayAlert("Success", $"Your request [add to calendar {Varevent.Name}] was successful.", "OK");
+            await Shell.Current.DisplayAlert("Success", $"Your request has been fulfilled.{Environment.NewLine}{Varevent.Name}] is now added to your calendar..", "OK");
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex);
-            await Shell.Current.DisplayAlert("Error", $"Unable to upload file. Error message: {ex.Message}", "OK");
+            await Shell.Current.DisplayAlert("Error", $"Some error happend. Error message: {ex.Message}", "OK");
         }
         finally
         {

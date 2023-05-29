@@ -21,11 +21,13 @@ public class EventService : BaseService, IEventService
 
     readonly ISecureStorage _secureStorage;
     readonly IFilePicker _filePicker;
+    readonly IBrowser _browser;
 
-    public EventService(ISecureStorage secureStorage, IFilePicker filePicker)
+    public EventService(ISecureStorage secureStorage, IFilePicker filePicker, IBrowser browser)
     {
         _secureStorage = secureStorage;
         _filePicker = filePicker;
+        _browser = browser;
         _httpClient.MaxResponseContentBufferSize = 134217728;
         this.GetSecureProperties();
     }
@@ -163,16 +165,13 @@ public class EventService : BaseService, IEventService
         if (response.IsSuccessStatusCode)
         {
             string url = await response.Content.ReadAsStringAsync();
-            bool success = await Launcher.OpenAsync(url);
-            Thread.Sleep(6000);
 
-            /*
+            bool success = await _browser.OpenAsync(url, BrowserLaunchMode.SystemPreferred);
+            Thread.Sleep(10000);
+
             string json = JsonSerializer.Serialize(varevent);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response2 = await _httpClient.PostAsync("api/google/create-event", content);
-            */
-            var response2 = await _httpClient.PostAsync("api/google/create-calendar", null);
-
             if (response2.IsSuccessStatusCode && response.IsSuccessStatusCode)
                 return true;
         }
