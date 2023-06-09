@@ -74,7 +74,7 @@
         <VerticalStackLayout Padding="25" Spacing="20">
             <Label Text="{DynamicResource local:App.loggedInUsername}" TextColor="Black"/>
             <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
-            <Label Text="KatifiApp v.0.2"
+            <Label Text="KatifiApp v.0.8.2"
                        TextColor="Black"
                        HorizontalOptions="Center" />
             <Label Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{0:yyyy, MMMM dd.}'}"
