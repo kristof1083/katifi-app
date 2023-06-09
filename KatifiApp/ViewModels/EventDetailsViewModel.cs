@@ -51,7 +51,11 @@ public partial class EventDetailsViewModel : BaseViewModel
             bool success = await _service.RegistUserForEventAsync(Varevent.Id);
 
             if (!success)
+            {
+                await Shell.Current.DisplayAlert("Registration failed", "We are unable to regist you for this event. The event is possibly in the past", "OK");
                 return;
+            }
+                
 
             await Shell.Current.DisplayAlert("Success", $"Your registration was successful to {Varevent.Name}", "OK");
             await Shell.Current.GoToAsync($"//{nameof(MyEventsPage)}");
@@ -167,12 +171,6 @@ public partial class EventDetailsViewModel : BaseViewModel
 
         try
         {
-            if (_connectivity.NetworkAccess != NetworkAccess.Internet)
-            {
-                await Shell.Current.DisplayAlert("Internet issue", "Check your internet and try again!", "OK");
-                return;
-            }
-
             if (!_preferences.Get("loggedin", false))
             {
                 await Shell.Current.DisplayAlert("Authorization issue", "Please log in, if you want to see the actual data on page!", "OK");
@@ -234,7 +232,7 @@ public partial class EventDetailsViewModel : BaseViewModel
             }
 
 
-            await Shell.Current.DisplayAlert("Success", $"Your request has been fulfilled.{Environment.NewLine}{Varevent.Name}] is now added to your calendar..", "OK");
+            await Shell.Current.DisplayAlert("Success", $"Your request has been fulfilled.{Environment.NewLine}{Varevent.Name}] is now added to your calendar.", "OK");
         }
         catch (Exception ex)
         {
